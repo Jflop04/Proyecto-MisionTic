@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de usuarios</title>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round ">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <div id="wrapper" class="d-flex">
+        <!--sidebar-->
+        <div id="sidebar-wrapper" class="overflow-hidden">
+            <div id="sidebar-heading" class="fw-bold">NAVEGACIÓN</div>
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-home"></i>Inicio</a>
+                <a href="#" class="list-group-item list-group-item-action"><i
+                        class="icon ion-md-barcode"></i>Productos</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-store"></i>Ventas</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-users-cog"></i>Usuarios</a>
+            </div>
+        </div>
+        <!--sidebar-->
+        <div id="content-wrapper" class="w-100">
+            <!--navbar-->
+            <nav id="navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <!--sidebar trigger-->
+                    <button class="btn btn-primary me-2" onclick="toggle()">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <!--sidebar trigger-->
+                    <a class="navbar-brand fw-bold me-auto" href="#">GESTOR DE USUARIOS</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="icon ion-md-person"></i>
+                                    Yerman
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--navbar-->
+
+            <!--content-->
+            <div id="content" class="container-fluid d-flex flex-column ">
+
+                <div class="container">
+                    <div class="mt-5"></div>
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <!-- <h2><b>GESTOR DE USUARIOS</b></h2> -->
+                                </div>
+                                <div class="col-lg-12">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                        data-bs-target="#addUsuariosModal"><i class="material-icons">&#xE147;</i>
+                                        Usuario
+                                    </button>
+                                    <!-- <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteUsuariosModal"><i class= "material-icons">&#xE147;</i> -->
+                                    <!--     Eliminar -->
+                                    <!-- </button> -->
+                                    <!-- <a href="#addUsuariosModal" class= "btn btn-outline-primary" data-toggle="modal"><i class= "material-icons">&#xE147;</i>Usuario</a> -->
+                                    <!-- <a href="#deleteUsuariosModal" class= "btn btn-outline-danger" data-toggle="modal"><i class= "material-icons">&#xE147;</i>Eliminar</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <table id="tabla-usuarios" class="table table-striped table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
+                                        </span>
+                                    </th>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="text-center">
+                                            <span class="custom-checkbox">
+                                                <input type="checkbox" id="caja1" name="opcion[]" value="1">
+                                                <label for="caja1"></label>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <div class="text-center">
+                                            <div class="btn-group">
+                                                <!-- <button class= "btn btn-primary btnEditar">Editar</button -->
+                                                <!-- <button class= "btn btn-danger btnBorrar">Borrar</button> -->
+                                                <a href="#editUsuariosModal" class="edit" data-bs-toggle="modal"><i
+                                                        class="material-icons" data-bs-toggle="tooltip"
+                                                        title="Editar">&#xE254;</i></a>
+                                                <a href="#deleteUsuariosModal" class="delete" data-bs-toggle="modal"><i
+                                                        class="material-icons" data-bs-toggle="tooltip"
+                                                        title="Eliminar">&#xE872;</i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="addUsuariosModal" tabindex="-1" role="dialog"
+                    aria-labelledby="addUsuariosModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="agregarusuariolabel">Crear usuario</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form id="formUsuarios">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">Nombre:</label>
+                                        <input type="text" class="form-control" required id="nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Rol:</label>
+                                        <select class="form-select" aria-label="Default select example" id="rol">
+                                            <option selected>Selecionar:</option>
+                                            <option value="1">Administrador</option>
+                                            <option value="2">Vendedor</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Estado:</label>
+                                        <select class="form-select" aria-label="Default select example" id="estado">
+                                            <option selected>Selecionar:</option>
+                                            <option value="1">Aprobado</option>
+                                            <option value="2">No aprobado</option>
+                                            <option value="3">Pendiente</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" id="btnCrear" class="btn btn-primary">Crear</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="editUsuariosModal" tabindex="-1" aria-labelledby="editUsuariosModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Editar Usuario</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name">Nombre</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Rol</label>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <option selected>Selecionar</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Vendedor</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><br>
+                                    <label for="name">Estado</label><br>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Pendiente">Pendiente
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Aprobado">Aprobado
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio" value="Noo aprobado">No aprobado
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deleteUsuariosModal" tabindex="-1"
+                    aria-labelledby="deleteUsuariosModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Borrar Usuario</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Esta seguro de borrar el usuario</p>
+                                <p class="text-warning"><small>Esta acción es definitiva</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Borrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const toggle = () => {
+            document.getElementById("sidebar-wrapper").classList.toggle("toggled");
+        };
+    </script>
+    <script src="https://kit.fontawesome.com/66ea8b0b72.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+    <!-- <script src="https://kit.fontawesome.com/646c794df3.js"></script> -->
+    <!-- <script src = "jquery/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src = "popper/popper.min.js"></script>     -->
+    <!--datatables js-->
+    <!-- <script type="text/javascript" src="datatables/datatables.min.js"></script> -->
+    <!-- <script type="text/javascript" src="main.js"></script>  -->
+</body>
+</html>
